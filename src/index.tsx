@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App'
 import reportWebVitals from './reportWebVitals';
-import { AtomiProvider } from 'typescript-package';
+import { AtomiProvider } from 'atomiql';
 import { BrowserRouter } from 'react-router-dom';
 
 const url = 'http://localhost:4000';

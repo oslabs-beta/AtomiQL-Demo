@@ -11,6 +11,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "apollo-server": "^2.24.1",
+    "atomiql": "file:../AtomiQL",
     "flexboxgrid": "^6.3.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
@@ -24,7 +25,6 @@
     "react-select": "^4.3.1",
     "react-spinners": "^0.10.6",
     "typescript": "^4.1.2",
-    "typescript-package": "file:../newfolder/typescript-package",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
