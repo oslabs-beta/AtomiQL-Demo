@@ -8,41 +8,27 @@ import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
 import { Pet } from '../components/NewPet'
 
-// const PETS_FIELDS = gql`
-//   fragment PetsFields on Pet {
-//     id
-//     name
-//     type
-//     img
-//     vaccinated @client
-//     owner {
-//       id
-//       age @client
-//     }
-//   }
-// `
-
-// const GET_PETS = gql`
-//   query GetPets {
-//     pets {
-//       ...PetsFields
-//     }
-//   }
-//   ${PETS_FIELDS}
-// `
+const PETS_FIELDS = gql`
+  fragment PetsFields on Pet {
+    id
+    name
+    type
+    img
+    # vaccinated @client
+    owner {
+      id
+      # age @client
+    }
+  }
+`
 
 const GET_PETS = gql`
   query GetPets {
     pets {
-      id
-      name
-      type
-      img
-      owner {
-        id
-      }
+      ...PetsFields
     }
   }
+  ${PETS_FIELDS}
 `
 
 // const ADD_PET = gql`
