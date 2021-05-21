@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App'
 import reportWebVitals from './reportWebVitals';
 import { AtomiProvider } from 'typescript-package';
+import { BrowserRouter } from 'react-router-dom';
 
-console.log(`AtomiProvider`, AtomiProvider)
-
-const url = 'https://graphql-pokemon2.vercel.app';
+const url = 'http://localhost:4000';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AtomiProvider url={url}>
-      <App />
-    </AtomiProvider>
+    <BrowserRouter>
+      <AtomiProvider url={url}>
+        <App />
+      </AtomiProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
