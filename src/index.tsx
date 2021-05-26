@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App'
 import reportWebVitals from './reportWebVitals';
-import { AtomiProvider } from 'atomiql';
+import client from './client'
+import { ApolloProvider } from '@apollo/react-hooks'
 import { BrowserRouter } from 'react-router-dom';
-
-const url = 'http://localhost:4000';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AtomiProvider url={url}>
+      <ApolloProvider client={client}>
         <App />
-      </AtomiProvider>
+      </ApolloProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
