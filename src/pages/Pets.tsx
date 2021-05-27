@@ -90,7 +90,7 @@ export default function Pets () {
     return <NewPetModal onSubmit={onSubmit} onCancel={() => setModal(false)} />
   }
 
-  console.log(`data.pets`, data.pets)
+  console.log(`data.pets`, data?.pets)
 
 
   return (
@@ -107,7 +107,7 @@ export default function Pets () {
         </div>
       </section>
       <section>
-        { !loading && !error && <PetsList pets={data.pets} /> }
+        { !loading && !error && <PetsList pets={data?.pets} /> }
       </section>
     </div>
   )
