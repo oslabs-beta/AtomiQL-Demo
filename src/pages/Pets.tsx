@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 // import gql from 'graphql-tag'
 import { gql } from 'graphql-request'
 // import { useQuery, useMutation } from '@apollo/react-hooks'
-// import { useQuery, useMutation } from 'atomiql'
-import { useQuery } from 'atomiql'
+import { useQuery, useMutation } from 'atomiql'
+// import { useQuery } from 'atomiql'
 import PetsList from '../components/PetsList'
 import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
@@ -31,20 +31,6 @@ const GET_PETS = gql`
   }
   ${PETS_FIELDS}
 `
-
-// const GET_PETS = gql`
-//   query GetPets {
-//     pets {
-//       id
-//       name
-//       type
-//       img
-//       owner {
-//         id
-//       }
-//     }
-//   }
-// `
 
 const ADD_PET = gql`
   mutation AddPet($input: NewPetInput!) {
@@ -76,12 +62,12 @@ const OtherComponent = () => {
 export default function Pets () {
   // const { data, loading, error } = useQuery(GET_PETS)
   const [modal, setModal] = useState(false)
-  const [ data, loading, error ] = useQuery(GET_PETS)
-  // const data = { pets: [examplePet] };
-  // const loading = false;
-  // const error = false;
-  // const [addPet, newPet] = useMutation(
-    // ADD_PET
+  // const [ data, loading, error ] = useQuery(GET_PETS)
+  const data = { pets: [examplePet] };
+  const loading = false;
+  const error = false;
+  const [addPet, newPet] = useMutation(
+    ADD_PET
   //   // {
   //   //   update(cache, { data: { addPet } }) {
   //   //     const { pets } = cache.readQuery({ query: GET_PETS })
@@ -91,12 +77,13 @@ export default function Pets () {
   //   //     })
   //   //   }
   //   // }
-  // )
+  )
   // console.log(`addPet`, addPet)
   // console.log(`newPet`, newPet);
 
   const onSubmit = (input: Pet) => {
     console.log(`input`, input)
+    addPet({input})
     // addPet({
     //   variables: { input }
     // })
@@ -149,7 +136,7 @@ export default function Pets () {
       <section>
         { !loading && !error && <PetsList pets={data?.pets} /> }
       </section>
-      <OtherComponent></OtherComponent>
+      {/* <OtherComponent></OtherComponent> */}
     </div>
   )
 }
