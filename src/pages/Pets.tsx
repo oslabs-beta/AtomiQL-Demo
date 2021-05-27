@@ -27,7 +27,17 @@ const GET_PETS = gql`
     }
   }
   ${PETS_FIELDS}
-`
+`;
+
+const OtherComponent = () => {
+  const [ data, loading, error ] = useQuery(GET_PETS)
+  if (!data?.pets) return <div>No Pets yet</div>
+  return (
+    <div>
+      {data?.pets.map((pet: any, i: number) => <div key={i}>{pet.name}</div>)}
+    </div>
+  )
+}
 
 export default function Pets () {
   const [modal, setModal] = useState(false)
@@ -61,6 +71,7 @@ export default function Pets () {
       <section>
         { !loading && !error && <PetsList pets={data?.pets} /> }
       </section>
+      <OtherComponent />
     </div>
   )
 }
