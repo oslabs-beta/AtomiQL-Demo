@@ -62,12 +62,13 @@ const OtherComponent = () => {
 export default function Pets () {
   // const { data, loading, error } = useQuery(GET_PETS)
   const [modal, setModal] = useState(false)
-  // const [ data, loading, error ] = useQuery(GET_PETS)
-  const data = { pets: [examplePet] };
-  const loading = false;
-  const error = false;
+  const [ data, loading, error ] = useQuery(GET_PETS)
   const [addPet, newPet] = useMutation(
-    ADD_PET
+    ADD_PET,
+    (cacheContainer: any, response: any) => {
+      const { pets } = cacheContainer.readQuery(GET_PETS);
+      cacheContainer.writeCache(GET_PETS, [response.data.addPet, ...pets])
+    }
   //   // {
   //   //   update(cache, { data: { addPet } }) {
   //   //     const { pets } = cache.readQuery({ query: GET_PETS })
@@ -78,11 +79,8 @@ export default function Pets () {
   //   //   }
   //   // }
   )
-  // console.log(`addPet`, addPet)
-  // console.log(`newPet`, newPet);
 
   const onSubmit = (input: Pet) => {
-    console.log(`input`, input)
     addPet({input})
     // addPet({
     //   variables: { input }
@@ -136,7 +134,7 @@ export default function Pets () {
       <section>
         { !loading && !error && <PetsList pets={data?.pets} /> }
       </section>
-      {/* <OtherComponent></OtherComponent> */}
+      <OtherComponent />
     </div>
   )
 }
