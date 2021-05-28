@@ -20,6 +20,16 @@ const PETS_FIELDS = gql`
   }
 `
 
+// !CHECK! This is how we query the vaccinated property from atomiql
+// [To Do] Add new function in atomiql (similar to useQuery?) to read gql query input against local state (see if this can be done without an initialstate and simply against the resolvers) and return resolved value
+const GET_PETS_LOCAL = gql`
+  query getPetsLocal {
+    pets {
+      vaccinated @client
+    }
+  }
+}`
+
 const GET_PETS = gql`
   query GetPets {
     pets {
@@ -31,6 +41,7 @@ const GET_PETS = gql`
 
 const OtherComponent = () => {
   const [ data, loading, error ] = useQuery(GET_PETS)
+  // const result = useQueryLocal(GET_PETS_LOCAL)
   if (!data?.pets) return <div>No Pets yet</div>
   return (
     <div>

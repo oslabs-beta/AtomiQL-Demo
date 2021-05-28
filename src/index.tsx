@@ -5,13 +5,37 @@ import App from './components/App'
 import reportWebVitals from './reportWebVitals';
 import { AtomiProvider } from 'atomiql';
 import { BrowserRouter } from 'react-router-dom';
+import { gql } from 'graphql-request';
+
 
 const url = 'http://localhost:4000';
+
+// !CHECK! added typeDefs and resolvers so we can send to provider
+const typeDefs: any = gql`
+  extend type User {
+    age: Int
+  }
+  extend type Pet {
+    vaccinated: Boolean!
+  }
+`
+const resolvers: any = {
+  User: {
+    age() {
+      return 35
+    }
+  },
+  Pet: {
+    vaccinated() {
+      return true
+    }
+  }
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AtomiProvider url={url}>
+      <AtomiProvider url={url} resolvers={resolvers} typeDefs={typeDefs}>
         <App />
       </AtomiProvider>
     </BrowserRouter>
