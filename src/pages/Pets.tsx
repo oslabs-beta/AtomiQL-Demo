@@ -120,8 +120,6 @@ export default function Pets () {
     return <NewPetModal onSubmit={onSubmit} onCancel={() => setModal(false)} />
   }
 
-  // console.log(`data.pets`, data?.pets)
-
   return (
     <div className="page pets-page">
       <h1>Pets</h1>
