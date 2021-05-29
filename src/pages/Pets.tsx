@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 // import gql from 'graphql-tag'
 import { gql } from 'graphql-request'
 // import { useQuery, useMutation } from '@apollo/react-hooks'
-import { useQuery } from 'atomiql'
+import { useQuery, useMutation } from 'atomiql'
+// import { useQuery } from 'atomiql'
 import PetsList from '../components/PetsList'
 import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
@@ -31,35 +32,64 @@ const GET_PETS = gql`
   ${PETS_FIELDS}
 `
 
-// const ADD_PET = gql`
-//   mutation AddPet($input: NewPetInput!) {
-//     addPet(input: $input) {
-//       ...PetsFields
-//     }
-//   }
-//   ${PETS_FIELDS}
-// `
+const ADD_PET = gql`
+  mutation AddPet($input: NewPetInput!) {
+    addPet(input: $input) {
+      ...PetsFields
+    }
+  }
+  ${PETS_FIELDS}
+`
 
+// const examplePet: Pet = {
+//   img: 'asdfasdf',
+//   id: 'asdfasdf',
+//   name: 'Tom',
+//   type: 'CAT'
+// }
+
+const OtherComponent = () => {
+  const [ data ] = useQuery(GET_PETS)
+  if (!data?.pets) return <div>No Pets yet</div>
+  return (
+    <div >
+      <div className="col-xs-10">
+        <h2>Component 2</h2>
+      </div>
+      <PetsList pets={data?.pets} />
+    </div>
+  )
+}
 
 export default function Pets () {
-  const [modal, setModal] = useState(false)
   // const { data, loading, error } = useQuery(GET_PETS)
+  const [modal, setModal] = useState(false)
   const [ data, loading, error ] = useQuery(GET_PETS)
-  // const [addPet, newPet] = useMutation(
-  //   ADD_PET,
-  //   {
-  //     update(cache, { data: { addPet } }) {
-  //       const { pets } = cache.readQuery({ query: GET_PETS })
-  //       cache.writeQuery({
-  //         query: GET_PETS,
-  //         data: { pets: [addPet, ...pets] }
-  //       })
-  //     }
-  //   }
-  // )
+  const [addPet] = useMutation(
+    ADD_PET,
+    (cache: any, { data: { addPet } }: any) => {
+      const { data: { pets }, writeAtom } = cache.readQuery(GET_PETS);
+      writeAtom({
+        pets: [addPet, ...pets]
+      })
+    },
+  //   // GET_PETS
+  //   // {
+  //   //   update(cache, { data: { addPet } }) {
+  //   //     const { pets } = cache.readQuery({ query: GET_PETS })
+  //   //     cache.writeQuery({
+  //   //       query: GET_PETS,
+  //   //       data: { pets: [addPet, ...pets] }
+  //   //     })
+  //   //   }
+  //   // }
+  )
 
   const onSubmit = (input: Pet) => {
-    console.log(`input`, input)
+    addPet({input})
+    // addPet({
+    //   variables: { input }
+    // })
     // addPet({
     //   variables: { input },
     //   optimisticResponse: {
@@ -90,15 +120,13 @@ export default function Pets () {
     return <NewPetModal onSubmit={onSubmit} onCancel={() => setModal(false)} />
   }
 
-  console.log(`data.pets`, data?.pets)
-
-
   return (
     <div className="page pets-page">
+      <h1>Pets</h1>
       <section>
         <div className="row between-xs middle-xs">
           <div className="col-xs-10">
-            <h1>Pets</h1>
+            <h1>Component 1</h1>
           </div>
 
           <div className="col-xs-2">
@@ -109,6 +137,7 @@ export default function Pets () {
       <section>
         { !loading && !error && <PetsList pets={data?.pets} /> }
       </section>
+      <OtherComponent />
     </div>
   )
 }
