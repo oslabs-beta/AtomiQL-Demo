@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { gql } from 'graphql-request'
-import { useQuery } from 'atomiql'
+import { useQuery, useQueryLocal } from 'atomiql'
 import PetsList from '../components/PetsList'
 import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
@@ -25,10 +25,10 @@ const PETS_FIELDS = gql`
 const GET_PETS_LOCAL = gql`
   query getPetsLocal {
     pets {
-      vaccinated @client
+      vaccinated
     }
   }
-}`
+`
 
 const GET_PETS = gql`
   query GetPets {
@@ -40,7 +40,9 @@ const GET_PETS = gql`
 `;
 
 const OtherComponent = () => {
+  const [ localData, localLoading, localError ] = useQueryLocal(GET_PETS_LOCAL)
   const [ data, loading, error ] = useQuery(GET_PETS)
+  console.log('LOCAL DATA IS', localData)
   // const result = useQueryLocal(GET_PETS_LOCAL)
   if (!data?.pets) return <div>No Pets yet</div>
   return (
