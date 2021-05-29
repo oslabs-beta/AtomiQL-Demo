@@ -61,27 +61,17 @@ const OtherComponent = () => {
   )
 }
 
-
 export default function Pets () {
   // const { data, loading, error } = useQuery(GET_PETS)
   const [modal, setModal] = useState(false)
   const [ data, loading, error ] = useQuery(GET_PETS)
   const [addPet] = useMutation(
     ADD_PET,
-    (cacheContainer: any, response: any) => {
-      const atomiAtomContainer = cacheContainer.readQuery(GET_PETS);
-      const { atomData, writeAtom } = atomiAtomContainer;
-      const { pets } = atomData.data
-      const newPetsArray = [response.data.addPet, ...pets];
+    (cache: any, { data: { addPet } }: any) => {
+      const { data: { pets }, writeAtom } = cache.readQuery(GET_PETS);
       writeAtom({
-        data: {
-          pets: newPetsArray
-        },
-        loading: false,
-        hasError: false,
-      });
-      // const { pets } = cacheContainer.readQuery(GET_PETS);
-      // cacheContainer.writeCache(GET_PETS, [response.data.addPet, ...pets])
+        pets: [addPet, ...pets]
+      })
     },
   //   // GET_PETS
   //   // {
@@ -131,7 +121,6 @@ export default function Pets () {
   }
 
   // console.log(`data.pets`, data?.pets)
-
 
   return (
     <div className="page pets-page">
