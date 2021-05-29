@@ -52,8 +52,11 @@ const OtherComponent = () => {
   const [ data ] = useQuery(GET_PETS)
   if (!data?.pets) return <div>No Pets yet</div>
   return (
-    <div>
-      {data?.pets.map((pet: any, i: number) => <div key={i}>{pet.name}</div>)}
+    <div >
+      <div className="col-xs-10">
+        <h2>Component 2</h2>
+      </div>
+      <PetsList pets={data?.pets} />
     </div>
   )
 }
@@ -77,7 +80,6 @@ export default function Pets () {
         loading: false,
         hasError: false,
       });
-
       // const { pets } = cacheContainer.readQuery(GET_PETS);
       // cacheContainer.writeCache(GET_PETS, [response.data.addPet, ...pets])
     },
@@ -133,10 +135,11 @@ export default function Pets () {
 
   return (
     <div className="page pets-page">
+      <h1>Pets</h1>
       <section>
         <div className="row between-xs middle-xs">
           <div className="col-xs-10">
-            <h1>Pets</h1>
+            <h1>Component 1</h1>
           </div>
 
           <div className="col-xs-2">
