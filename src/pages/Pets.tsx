@@ -41,15 +41,15 @@ const ADD_PET = gql`
   ${PETS_FIELDS}
 `
 
-const examplePet: Pet = {
-  img: 'asdfasdf',
-  id: 'asdfasdf',
-  name: 'Tom',
-  type: 'CAT'
-}
+// const examplePet: Pet = {
+//   img: 'asdfasdf',
+//   id: 'asdfasdf',
+//   name: 'Tom',
+//   type: 'CAT'
+// }
 
 const OtherComponent = () => {
-  const [ data, loading, error ] = useQuery(GET_PETS)
+  const [ data ] = useQuery(GET_PETS)
   if (!data?.pets) return <div>No Pets yet</div>
   return (
     <div>
@@ -63,12 +63,25 @@ export default function Pets () {
   // const { data, loading, error } = useQuery(GET_PETS)
   const [modal, setModal] = useState(false)
   const [ data, loading, error ] = useQuery(GET_PETS)
-  const [addPet, newPet] = useMutation(
+  const [addPet] = useMutation(
     ADD_PET,
     (cacheContainer: any, response: any) => {
-      const { pets } = cacheContainer.readQuery(GET_PETS);
-      cacheContainer.writeCache(GET_PETS, [response.data.addPet, ...pets])
-    }
+      const atomiAtomContainer = cacheContainer.readQuery(GET_PETS);
+      const { atomData, writeAtom } = atomiAtomContainer;
+      const { pets } = atomData.data
+      const newPetsArray = [response.data.addPet, ...pets];
+      writeAtom({
+        data: {
+          pets: newPetsArray
+        },
+        loading: false,
+        hasError: false,
+      });
+
+      // const { pets } = cacheContainer.readQuery(GET_PETS);
+      // cacheContainer.writeCache(GET_PETS, [response.data.addPet, ...pets])
+    },
+  //   // GET_PETS
   //   // {
   //   //   update(cache, { data: { addPet } }) {
   //   //     const { pets } = cache.readQuery({ query: GET_PETS })
