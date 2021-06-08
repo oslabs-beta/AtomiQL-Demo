@@ -8,6 +8,7 @@ import PetsList from '../components/PetsList'
 import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
 import { Pet } from '../components/NewPet'
+import { Component2 } from '../components/Component2'
 
 const PETS_FIELDS = gql`
   fragment PetsFields on Pet {
@@ -23,7 +24,7 @@ const PETS_FIELDS = gql`
   }
 `
 
-const GET_PETS = gql`
+export const GET_PETS = gql`
   query GetPets {
     pets {
       ...PetsFields
@@ -48,24 +49,13 @@ const ADD_PET = gql`
 //   type: 'CAT'
 // }
 
-const OtherComponent = () => {
-  const [ data ] = useQuery(GET_PETS)
-  if (!data?.pets) return <div>No Pets yet</div>
-  return (
-    <div >
-      <div className="col-xs-10">
-        <h2>Component 2</h2>
-      </div>
-      <PetsList pets={data?.pets} />
-    </div>
-  )
-}
+
 
 export default function Pets () {
   // const { data, loading, error } = useQuery(GET_PETS)
   const [modal, setModal] = useState(false)
   const [ data, loading, error ] = useQuery(GET_PETS)
-  const [addPet] = useMutation(
+  const [addPet, newPet] = useMutation(
     ADD_PET,
     (cache: any, { data: { addPet } }: any) => {
       const { data: { pets }, writeAtom } = cache.readQuery(GET_PETS);
@@ -113,8 +103,7 @@ export default function Pets () {
 
   if (loading) return <Loader />
 
-  // if (error || newPet.error) return <span>Error</span>
-  if (error) return <span>Error</span>
+  if (error || newPet.hasError) return <span>Error</span>
   
   if (modal) {
     return <NewPetModal onSubmit={onSubmit} onCancel={() => setModal(false)} />
@@ -137,7 +126,7 @@ export default function Pets () {
       <section>
         { !loading && !error && <PetsList pets={data?.pets} /> }
       </section>
-      <OtherComponent />
+      <Component2 />
     </div>
   )
 }
