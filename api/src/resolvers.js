@@ -12,6 +12,12 @@ module.exports = {
   },
   Mutation: {
     addPet(_, {input}, {models, user}) {
+      // function sleep(miliseconds) {
+      //   let currentTime = new Date().getTime();
+      //   while (currentTime + miliseconds >= new Date().getTime()) {
+      //   }
+      // }
+      // sleep(100)
       const pet = models.Pet.create({...input, user: user.id})
       return pet
     }
