@@ -3,7 +3,8 @@ module.exports = {
     pets(_, {input}, {models}) {
       return models.Pet.findMany(input || {})
     },
-    pet(_, {id}, {models}) {
+    pet(_, {input}, {models}) {
+      const { id } = input;
       return models.Pet.findOne({id})
     },
     user(_, __, {models}) {

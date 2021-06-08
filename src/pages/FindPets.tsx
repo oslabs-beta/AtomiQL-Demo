@@ -8,14 +8,14 @@ import { Component3 } from '../components/Component3'
 
 
 export const GET_PET = gql`
-query {
-  pet(id: "2l3krjhwelkfhaiewua") {
-    name
-    id
-    createdAt
-    img
+  query {
+    pet(input: {id: "2l3krjhwelkfhaiewua"}) {
+      name
+      id
+      createdAt
+      img
+    }
   }
-}
 `
 
 
