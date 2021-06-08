@@ -10,6 +10,16 @@ const Header = () =>
           Home
         </Link>
       </div>
+      <div className="col-xs">
+        <Link to="/1" >
+          Pets
+        </Link>
+      </div>
+      <div className="col-xs">
+        <Link to="/2" >
+          Find Pets
+        </Link>
+      </div>
     </div>
   </header>
 
