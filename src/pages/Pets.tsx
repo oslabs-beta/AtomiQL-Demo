@@ -2,12 +2,13 @@ import React, {useState} from 'react'
 // import gql from 'graphql-tag'
 import { gql } from 'graphql-request'
 // import { useQuery, useMutation } from '@apollo/react-hooks'
-import { useQuery, useMutation } from 'atomiql'
+import { useQuery, useMutation, localQuery } from 'atomiql'
 // import { useQuery } from 'atomiql'
 import PetsList from '../components/PetsList'
 import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
 import { Pet } from '../components/NewPet'
+import { writeAtom } from 'jotai/core/vanilla'
 
 const PETS_FIELDS = gql`
   fragment PetsFields on Pet {
@@ -31,6 +32,12 @@ const GET_PETS = gql`
   }
   ${PETS_FIELDS}
 `
+
+const LOGIN_STATUS = gql`
+  query LoginStatus {
+    loginStatus @client
+  }
+`;
 
 const ADD_PET = gql`
   mutation AddPet($input: NewPetInput!) {
@@ -61,10 +68,29 @@ const OtherComponent = () => {
   )
 }
 
+const findLoginStatus = () => {
+  return 'admin'
+}
+
 export default function Pets () {
   // const { data, loading, error } = useQuery(GET_PETS)
   const [modal, setModal] = useState(false)
   const [ data, loading, error ] = useQuery(GET_PETS)
+  const [ localData, localLoading, localError] = useQuery(LOGIN_STATUS)
+
+  const [setUserStatus] = useMutation(
+    LOGIN_STATUS,
+    // cache and mutationArg
+    (cache: any, { data: { loginStatus }}: any) => {
+      const {  writeAtom } = cache.readQuery(LOGIN_STATUS)
+      writeAtom({
+        loginStatus
+      })
+    }
+  )
+
+  setUserStatus('admin')
+
   const [addPet] = useMutation(
     ADD_PET,
     (cache: any, { data: { addPet } }: any) => {
@@ -73,6 +99,10 @@ export default function Pets () {
         pets: [addPet, ...pets]
       })
     },
+
+    // writeAtom({
+    //   userStatus: 'admin'
+    // })
   //   // GET_PETS
   //   // {
   //   //   update(cache, { data: { addPet } }) {
@@ -123,6 +153,7 @@ export default function Pets () {
   return (
     <div className="page pets-page">
       <h1>Pets</h1>
+      <div>Currently Logged On {localData}</div> 
       <section>
         <div className="row between-xs middle-xs">
           <div className="col-xs-10">
