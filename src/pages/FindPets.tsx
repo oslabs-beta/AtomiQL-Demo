@@ -31,10 +31,8 @@ query ($input: PetsInput) {
 
 export default function FindPets () {
   const [ data, loading, error ] = useQuery(GET_PET, {
-    variables: {
-      input: {
-        id: '2l3krjhwelkfhaiewua'
-      }
+    input: {
+      id: '2l3krjhwelkfhaiewua'
     }
   })
   console.log(`data in FindPets: `, data);
