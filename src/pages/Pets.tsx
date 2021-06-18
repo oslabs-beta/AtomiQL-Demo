@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+/* eslint-disable */
+import React, { useState } from 'react'
 // import gql from 'graphql-tag'
 import { gql } from 'graphql-request'
 // import { useQuery, useMutation } from '@apollo/react-hooks'
@@ -13,7 +14,7 @@ import { Component2 } from '../components/Component2'
 const PETS_FIELDS = gql`
   fragment PetsFields on Pet {
     id
-    name
+    name @client
     type
     img
     # vaccinated @client
@@ -24,13 +25,28 @@ const PETS_FIELDS = gql`
   }
 `
 
+// export const GET_PETS = gql`
+//   query GetPets {
+//     pets {
+//       ...PetsFields
+//     }
+//   }
+//   ${PETS_FIELDS}
+// `
 export const GET_PETS = gql`
   query GetPets {
     pets {
-      ...PetsFields
+      id
+      name @client
+      type
+      img
+      # vaccinated @client
+      owner {
+        id
+        # age @client
+      }
     }
   }
-  ${PETS_FIELDS}
 `
 
 const ADD_PET = gql`
@@ -51,10 +67,10 @@ const ADD_PET = gql`
 
 
 
-export default function Pets () {
+export default function Pets() {
   // const { data, loading, error } = useQuery(GET_PETS)
   const [modal, setModal] = useState(false)
-  const [ data, loading, error ] = useQuery(GET_PETS)
+  const [data, loading, error] = useQuery(GET_PETS)
   const [addPet, newPet] = useMutation(
     ADD_PET,
     (cache: any, { data: { addPet } }: any) => {
@@ -63,20 +79,20 @@ export default function Pets () {
         pets: [addPet, ...pets]
       })
     },
-  //   // GET_PETS
-  //   // {
-  //   //   update(cache, { data: { addPet } }) {
-  //   //     const { pets } = cache.readQuery({ query: GET_PETS })
-  //   //     cache.writeQuery({
-  //   //       query: GET_PETS,
-  //   //       data: { pets: [addPet, ...pets] }
-  //   //     })
-  //   //   }
-  //   // }
+    //   // GET_PETS
+    //   // {
+    //   //   update(cache, { data: { addPet } }) {
+    //   //     const { pets } = cache.readQuery({ query: GET_PETS })
+    //   //     cache.writeQuery({
+    //   //       query: GET_PETS,
+    //   //       data: { pets: [addPet, ...pets] }
+    //   //     })
+    //   //   }
+    //   // }
   )
 
   const onSubmit = (input: Pet) => {
-    addPet({input})
+    addPet({ input })
     // addPet({
     //   variables: { input }
     // })
@@ -101,10 +117,11 @@ export default function Pets () {
     setModal(false)
   }
 
+
   if (loading) return <Loader />
 
   if (error || newPet.hasError) return <span>Error</span>
-  
+
   if (modal) {
     return <NewPetModal onSubmit={onSubmit} onCancel={() => setModal(false)} />
   }
@@ -124,7 +141,7 @@ export default function Pets () {
         </div>
       </section>
       <section>
-        { !loading && !error && <PetsList pets={data?.pets} /> }
+        {!loading && !error && <PetsList pets={data?.pets} />}
       </section>
       <Component2 />
     </div>
