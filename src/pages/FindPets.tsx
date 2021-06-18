@@ -1,6 +1,6 @@
 import React from 'react'
-// import gql from 'graphql-tag'
-import { gql } from 'graphql-request'
+import gql from 'graphql-tag'
+// import { gql } from 'graphql-request'
 import { useQuery } from 'atomiql'
 import PetsList from '../components/PetsList'
 import Loader from '../components/Loader'
@@ -8,19 +8,21 @@ import { Component3 } from '../components/Component3'
 
 
 // export const GET_PET = gql`
-//   query {
+//   query GetPetQuery {
 //     pet(input: {id: "2l3krjhwelkfhaiewua"}) {
-//       name
+//       name @client
 //       id
 //       createdAt
 //       img
+//       type
 //     }
 //   }
 // `
+
 export const GET_PET = gql`
-query ($input: PetsInput) {
+query GetPetQuery ($input: PetsInput) {
   pet(input: $input) {
-    name
+    name @client
     id
     createdAt
     img
