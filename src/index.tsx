@@ -8,10 +8,24 @@ import { BrowserRouter } from 'react-router-dom';
 
 const url = 'http://localhost:4000';
 
+
+const resolvers = {
+  pet: {
+    name() {
+      return 'name local'
+    }
+  },
+  pets: {
+    name() {
+      return 'array name local'
+    }
+  }
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AtomiProvider url={url}>
+      <AtomiProvider url={url} resolvers={resolvers}>
         <App />
       </AtomiProvider>
     </BrowserRouter>
