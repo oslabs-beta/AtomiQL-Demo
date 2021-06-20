@@ -12,12 +12,20 @@ const url = 'http://localhost:4000';
 const resolvers = {
   pet: {
     name() {
-      return 'name local'
+      return 'Jones Local'
+    },
+    createdAt() {
+      return 15;
     }
   },
   pets: {
+    owner: {
+      age() {
+        return 15
+      }
+    },
     name() {
-      return 'array name local'
+      return 'Jimmy Local'
     }
   }
 }
