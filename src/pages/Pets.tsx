@@ -14,7 +14,7 @@ import { Component2 } from '../components/Component2'
 const PETS_FIELDS = gql`
   fragment PetsFields on Pet {
     id
-    name @client
+    name
     type
     img
     # vaccinated @client
@@ -38,12 +38,13 @@ export const GET_PETS = gql`
     pets {
       id
       name @client
+      # name
       type
       img
       # vaccinated @client
       owner {
         id
-        # age @client
+        age @client
       }
     }
   }

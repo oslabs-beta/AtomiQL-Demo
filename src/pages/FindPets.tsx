@@ -23,7 +23,9 @@ export const GET_PET = gql`
 query GetPetQuery ($input: PetsInput) {
   pet(input: $input) {
     name @client
+    name
     id
+    createdAt @client
     createdAt
     img
   }
