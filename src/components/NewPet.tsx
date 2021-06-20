@@ -12,6 +12,7 @@ export interface Pet {
   id?: string
   name: string
   type: string
+  createdAt?: number
 }
 
 export interface NewPetProps {
