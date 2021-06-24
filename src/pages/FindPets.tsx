@@ -23,10 +23,8 @@ export const GET_PET = gql`
 query GetPetQuery ($input: PetsInput) {
   pet(input: $input) {
     name @client
-    name
     id
     createdAt @client
-    createdAt
     img
   }
 }
@@ -35,8 +33,10 @@ query GetPetQuery ($input: PetsInput) {
 
 export default function FindPets () {
   const [ data, loading, error ] = useQuery(GET_PET, {
-    input: {
-      id: '2l3krjhwelkfhaiewua'
+    variables: {
+      input: {
+        id: '2l3krjhwelkfhaiewua'
+      }
     }
   })
   console.log(`data in FindPets: `, data);
