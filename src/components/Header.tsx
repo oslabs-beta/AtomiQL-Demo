@@ -20,6 +20,11 @@ const Header = () =>
           Find Pets
         </Link>
       </div>
+      <div className="col-xs">
+        <Link to="/3" >
+          Auth
+        </Link>
+      </div>
     </div>
   </header>
 
