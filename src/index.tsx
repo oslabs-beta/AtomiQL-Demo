@@ -6,12 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { AtomiProvider } from 'atomiql';
 import { BrowserRouter } from 'react-router-dom';
 import { resolvers } from './AtomiClient/resolvers';
+import { typeDefs } from './AtomiClient/schema';
 
 const url = 'http://localhost:4000';
 
 const client = {
   url,
-  resolvers
+  resolvers,
+  typeDefs
 }
 
 ReactDOM.render(
