@@ -48,10 +48,15 @@ const resolvers = {
   }
 }
 
+const client = {
+  url,
+  resolvers
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AtomiProvider url={url} resolvers={resolvers}>
+      <AtomiProvider client={client}>
         <App />
       </AtomiProvider>
     </BrowserRouter>

@@ -37,7 +37,7 @@ export default function FindPets () {
       input: {
         id: '2l3krjhwelkfhaiewua'
       }
-    }
+    },
   })
   console.log(`data in FindPets: `, data);
 
