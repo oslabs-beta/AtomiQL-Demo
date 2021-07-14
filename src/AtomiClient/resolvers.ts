@@ -5,8 +5,8 @@ export const resolvers = {
   //   },
   // },
   Pet: {
-    name() {
-      return 'Jones Local'
+    name(pet: any, _context: any, _c: any, _astNode: any) {
+      return pet.id + ' Local'
     },
     createdAt() {
       return '9999999'
