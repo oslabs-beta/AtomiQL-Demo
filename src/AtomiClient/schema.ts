@@ -10,6 +10,7 @@ type User {
   id: ID!
   username: String!
   pets: [Pet]!
+  age: Int
 }
 
 type Pet {

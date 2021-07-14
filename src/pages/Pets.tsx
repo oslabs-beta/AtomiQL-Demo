@@ -37,10 +37,11 @@ export const GET_PETS = gql`
   query GetPets {
     pets {
       id
+      # name @skip(if: true)
       name @client
-      # name
       type
       img
+      createdAt
       # vaccinated @client
       owner {
         id
@@ -118,6 +119,7 @@ export default function Pets() {
     setModal(false)
   }
 
+  console.log(`data`, data)
 
   if (loading) return <Loader />
 
