@@ -4,8 +4,9 @@ module.exports = {
       return models.Pet.findMany(input || {})
     },
     pet(_, {input}, {models}) {
-      const { id } = input;
-      return models.Pet.findOne({id})
+      const { id, name } = input;
+      if (id) return models.Pet.findOne({id});
+      else return models.Pet.findOne({name})
     },
     user(_, __, {models}) {
       return models.User.findOne()
