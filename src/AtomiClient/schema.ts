@@ -1,4 +1,4 @@
-import { gql } from 'graphql-tag';
+import { gql } from 'atomiql';
 
 export const typeDefs = gql`
   enum PetType {

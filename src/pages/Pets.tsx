@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { gql } from 'graphql-request'
-import { useQuery, useMutation } from 'atomiql'
+import { useQuery, useMutation, gql } from 'atomiql'
 import PetsList from '../components/PetsList'
 import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
@@ -24,7 +23,7 @@ export const GET_PETS = gql`
   query GetPets {
     pets {
       id
-      name @client
+      name
       type
       img
       createdAt

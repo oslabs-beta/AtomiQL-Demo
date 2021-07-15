@@ -8,7 +8,7 @@ export const resolvers = {
     name(pet: any, _context: any, _c: any, _astNode: any) {
       console.log(`pet`, pet);
       console.log(`_astNode`, _astNode)
-      return 'Local name'
+      return 'Local jimmy'
     },
     createdAt() {
       return '9999999'

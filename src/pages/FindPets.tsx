@@ -1,6 +1,5 @@
 import React from 'react'
-import gql from 'graphql-tag'
-import { useQuery } from 'atomiql'
+import { useQuery, gql } from 'atomiql'
 import PetsList from '../components/PetsList'
 import Loader from '../components/Loader'
 

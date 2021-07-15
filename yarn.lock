@@ -3168,7 +3168,7 @@
 
 "atomiql@file:../AtomiQL":
   "resolved" "file:../AtomiQL"
-  "version" "1.0.0"
+  "version" "1.0.1"
 
 "autoprefixer@^9.6.1":
   "integrity" "sha512-XrvP4VVHdRBCdX1S3WXVD8+RyG9qeb1D5Sn1DeLiG2xfSpzellk5k54xbUERJ3M5DggQxes39UGOTP8CFrEGbg=="
@@ -4364,13 +4364,6 @@
     "ripemd160" "^2.0.0"
     "safe-buffer" "^5.0.1"
     "sha.js" "^2.4.8"
-
-"cross-fetch@^3.0.6":
-  "integrity" "sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ=="
-  "resolved" "https://registry.npmjs.org/cross-fetch/-/cross-fetch-3.1.4.tgz"
-  "version" "3.1.4"
-  dependencies:
-    "node-fetch" "2.6.1"
 
 "cross-spawn@^6.0.0":
   "integrity" "sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ=="
@@ -5711,11 +5704,6 @@
     "snapdragon" "^0.8.1"
     "to-regex" "^3.0.1"
 
-"extract-files@^9.0.0":
-  "integrity" "sha512-CvdFfHkC95B4bBBk36hcEmvdR2awOdhhVUYH6S/zrVj3477zven/fJMYg7121h4T1xHZC+tetUpubpAhxwI7hQ=="
-  "resolved" "https://registry.npmjs.org/extract-files/-/extract-files-9.0.0.tgz"
-  "version" "9.0.0"
-
 "extsprintf@^1.2.0":
   "integrity" "sha1-4mifjzVvrWLMplo6kcXfX5VRaS8="
   "resolved" "https://registry.npmjs.org/extsprintf/-/extsprintf-1.4.0.tgz"
@@ -6224,15 +6212,6 @@
     "@apollographql/apollo-tools" "^0.5.0"
     "apollo-server-env" "^3.1.0"
     "apollo-server-types" "^0.8.0"
-
-"graphql-request@^3.4.0":
-  "integrity" "sha512-acrTzidSlwAj8wBNO7Q/UQHS8T+z5qRGquCQRv9J1InwR01BBWV9ObnoE+JS5nCCEj8wSGS0yrDXVDoRiKZuOg=="
-  "resolved" "https://registry.npmjs.org/graphql-request/-/graphql-request-3.4.0.tgz"
-  "version" "3.4.0"
-  dependencies:
-    "cross-fetch" "^3.0.6"
-    "extract-files" "^9.0.0"
-    "form-data" "^3.0.0"
 
 "graphql-subscriptions@^1.0.0":
   "integrity" "sha512-95yD/tKi24q8xYa7Q9rhQN16AYj5wPbrb8tmHGM3WRc9EBmWrG/0kkMl+tQG8wcEuE9ibR4zyOM31p5Sdr2v4g=="
@@ -8459,7 +8438,7 @@
     "lower-case" "^2.0.2"
     "tslib" "^2.0.3"
 
-"node-fetch@^2.6.1", "node-fetch@2.6.1":
+"node-fetch@^2.6.1":
   "integrity" "sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw=="
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.1.tgz"
   "version" "2.6.1"
