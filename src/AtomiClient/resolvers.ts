@@ -6,7 +6,9 @@ export const resolvers = {
   // },
   Pet: {
     name(pet: any, _context: any, _c: any, _astNode: any) {
-      return pet.id + ' Local'
+      console.log(`pet`, pet);
+      console.log(`_astNode`, _astNode)
+      return 'Local name'
     },
     createdAt() {
       return '9999999'
