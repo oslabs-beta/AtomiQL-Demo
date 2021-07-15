@@ -17,11 +17,16 @@ const Header = () =>
       </div>
       <div className="col-xs">
         <Link to="/2" >
-          Find Pets
+          Find Pet by ID
         </Link>
       </div>
       <div className="col-xs">
         <Link to="/3" >
+          Find Pet by Name
+        </Link>
+      </div>
+      <div className="col-xs">
+        <Link to="/4" >
           Auth
         </Link>
       </div>

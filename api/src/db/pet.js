@@ -16,7 +16,8 @@ const createPetModel = db => {
     },
 
     create(pet) {
-      const newPet = {id: nanoid(), createdAt: Date.now(), ...pet}
+      const createdAt = parseInt(Date.now().toString().slice(5));
+      const newPet = {id: nanoid(), createdAt, ...pet}
       
       db.get('pet')
         .push(newPet)

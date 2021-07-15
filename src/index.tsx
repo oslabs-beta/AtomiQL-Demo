@@ -5,53 +5,21 @@ import App from './components/App'
 import reportWebVitals from './reportWebVitals';
 import { AtomiProvider } from 'atomiql';
 import { BrowserRouter } from 'react-router-dom';
+import { resolvers } from './AtomiClient/resolvers';
+import { typeDefs } from './AtomiClient/schema';
 
 const url = 'http://localhost:4000';
 
-
-const resolvers = {
-  pet: {
-    name() {
-      return 'Jones Local'
-    },
-    createdAt() {
-      return 51;
-    },
-    img() {
-      return "http://placekitten.com/300/300"
-    },
-    id() {
-      return 32
-    }
-  },
-  pets: {
-    owner: {
-      age() {
-        return 15
-      },
-      id() {
-        return 123
-      }
-    },
-    id() {
-      return 234
-    },
-    type() {
-      return 'DOG'
-    },
-    name() {
-      return 'Jimmy Local'
-    },
-    img() {
-      return "http://placekitten.com/300/300"
-    }
-  }
+const client = {
+  url,
+  resolvers,
+  typeDefs
 }
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AtomiProvider url={url} resolvers={resolvers}>
+      <AtomiProvider client={client}>
         <App />
       </AtomiProvider>
     </BrowserRouter>

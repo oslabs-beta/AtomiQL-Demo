@@ -6,6 +6,7 @@ import FindPets from '../pages/FindPets'
 import { AtomiContext } from 'atomiql'
 import { gql } from 'graphql-request'
 import Auth from '../pages/Auth'
+import FindPetByName from '../pages/FindPetByName'
 
 export const AUTH_CHECK = gql`
 query AuthCheck {
@@ -41,7 +42,10 @@ const App = () => {
           <Route exact path="/2" component={FindPets} />
         </Switch>
         <Switch>
-          <Route exact path="/3" component={Auth} />
+          <Route exact path="/3" component={FindPetByName} />
+        </Switch>
+        <Switch>
+          <Route exact path="/4" component={Auth} />
         </Switch>
       </div>
     </Fragment>

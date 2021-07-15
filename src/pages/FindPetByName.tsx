@@ -5,26 +5,28 @@ import PetsList from '../components/PetsList'
 import Loader from '../components/Loader'
 
 export const GET_PET = gql`
-query GetPetQuery ($input: PetsInput) {
-  pet(input: $input) {
-    name
-    id
-    createdAt
-    img
-    type
+  query GetPetQuery {
+    pet(input: {name: "Tom"}) {
+      name
+      id
+      createdAt
+      img
+      type
+      __typename
+    }
   }
-}
 `
 
-export default function FindPets () {
+export default function FindPetByName () {
   const [ data, loading, error ] = useQuery(GET_PET, {
     variables: {
       input: {
-        id: '2l3krjhwelkfhaiewua'
+        name: 'Tom'
       }
-    },
+    }
   })
-  console.log(`data in FindPets: `, data);
+  console.log(`data in FindPetByName: `, data);
+  console.log('error', error)
 
   if (loading) return <Loader />
 
@@ -32,7 +34,7 @@ export default function FindPets () {
 
   return (
     <div className="page pets-page">
-      <h1>Find Pet by ID</h1>
+      <h1>Find Pet by Name</h1>
       <section>
         <div className="row between-xs middle-xs">
           <div className="col-xs-10">
@@ -43,7 +45,7 @@ export default function FindPets () {
       <section>
         { !loading && !error && <PetsList pets={[data?.pet]} /> }
       </section>
-      {/* <Component3 /> */}
     </div>
   )
 }
+
