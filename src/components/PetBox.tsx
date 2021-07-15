@@ -7,6 +7,7 @@ const PetBox = ({pet}: {pet: Pet}) => (
       <img src={pet.img + `?pet=${pet.id}`} alt=""/>
     </figure>
     <div className="pet-name">{pet.name}</div>
+    <div className="pet-name">Created at: {pet.createdAt}</div>
     <div className="pet-type">{pet.type}</div>
   </div>
 )

@@ -27,13 +27,15 @@ input NewPetInput {
 }
 
 input PetsInput {
+  id: ID
   type: PetType
+  name: String
 }
 
 type Query {
   user: User!
   pets(input: PetsInput): [Pet]!
-  pet(id: ID!): Pet!
+  pet(input: PetsInput): Pet!
 }
 
 type Mutation {

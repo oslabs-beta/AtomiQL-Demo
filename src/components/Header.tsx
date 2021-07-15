@@ -10,6 +10,26 @@ const Header = () =>
           Home
         </Link>
       </div>
+      <div className="col-xs">
+        <Link to="/1" >
+          Pets
+        </Link>
+      </div>
+      <div className="col-xs">
+        <Link to="/2" >
+          Find Pet by ID
+        </Link>
+      </div>
+      <div className="col-xs">
+        <Link to="/3" >
+          Auth
+        </Link>
+      </div>
+      <div className="col-xs">
+        <Link to="/4" >
+          Find Pet by Name
+        </Link>
+      </div>
     </div>
   </header>
 

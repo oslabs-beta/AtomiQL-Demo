@@ -2,7 +2,7 @@ import React from 'react'
 import { Pet } from './NewPet'
 import PetBox from './PetBox'
 
-export default function PetsList({pets}: { pets: [Pet]}) {
+export default function PetsList({pets}: { pets: Pet[]}) {
   return (
     <div className="row">
       {pets.map(pet => (

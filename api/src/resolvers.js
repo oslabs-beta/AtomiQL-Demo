@@ -3,8 +3,10 @@ module.exports = {
     pets(_, {input}, {models}) {
       return models.Pet.findMany(input || {})
     },
-    pet(_, {id}, {models}) {
-      return models.Pet.findOne({id})
+    pet(_, {input}, {models}) {
+      const { id, name } = input;
+      if (id) return models.Pet.findOne({id})
+      if (name) return models.Pet.findOne({name})
     },
     user(_, __, {models}) {
       return models.User.findOne()
@@ -12,6 +14,12 @@ module.exports = {
   },
   Mutation: {
     addPet(_, {input}, {models, user}) {
+      // function sleep(miliseconds) {
+      //   let currentTime = new Date().getTime();
+      //   while (currentTime + miliseconds >= new Date().getTime()) {
+      //   }
+      // }
+      // sleep(100)
       const pet = models.Pet.create({...input, user: user.id})
       return pet
     }

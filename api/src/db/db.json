@@ -9,7 +9,7 @@
       "type": "CAT",
       "img": "img.jpg",
       "name": "Tom",
-      "createdAt": 1241234
+      "createdAt": 1234
     },
     {
       "id": "9mzUSlFLb3RdzF-jgFC9Z",
@@ -19,9 +19,9 @@
       "user": "jBWMVGjm50l6LGwepDoty"
     },
     {
-      "id": "ruF5fMAZUpnsfiq0U18CY",
-      "createdAt": 1620286,
-      "name": "Alfie",
+      "id": "-qOI1C3egU4DgNPvx-OT8",
+      "createdAt": 1625625269471,
+      "name": "asdf",
       "type": "DOG",
       "user": "jBWMVGjm50l6LGwepDoty"
     }
