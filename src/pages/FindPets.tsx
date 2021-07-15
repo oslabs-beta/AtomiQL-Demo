@@ -1,35 +1,20 @@
 import React from 'react'
 import gql from 'graphql-tag'
-// import { gql } from 'graphql-request'
 import { useQuery } from 'atomiql'
 import PetsList from '../components/PetsList'
 import Loader from '../components/Loader'
-import { Component3 } from '../components/Component3'
-
-
-// export const GET_PET = gql`
-//   query GetPetQuery {
-//     pet(input: {id: "2l3krjhwelkfhaiewua"}) {
-//       name @client
-//       id
-//       createdAt
-//       img
-//       type
-//     }
-//   }
-// `
 
 export const GET_PET = gql`
 query GetPetQuery ($input: PetsInput) {
   pet(input: $input) {
-    name @client
+    name
     id
-    createdAt @client
+    createdAt
     img
+    type
   }
 }
 `
-
 
 export default function FindPets () {
   const [ data, loading, error ] = useQuery(GET_PET, {
@@ -47,7 +32,7 @@ export default function FindPets () {
 
   return (
     <div className="page pets-page">
-      <h1>Find Pets</h1>
+      <h1>Find Pet by ID</h1>
       <section>
         <div className="row between-xs middle-xs">
           <div className="col-xs-10">
