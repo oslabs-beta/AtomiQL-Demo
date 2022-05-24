@@ -1,11 +1,12 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { useQuery, useMutation, gql } from 'atomiql'
+import { useQuery, useMutation } from 'atomiql'
 import PetsList from '../components/PetsList'
 import NewPetModal from '../components/NewPetModal'
 import Loader from '../components/Loader'
 import { Pet } from '../components/NewPet'
 import { Component2 } from '../components/Component2'
+import { gql } from 'graphql-request'
 
 const PETS_FIELDS = gql`
   fragment PetsFields on Pet {
@@ -29,7 +30,6 @@ export const GET_PETS = gql`
       createdAt
       owner {
         id
-        age @client
       }
     }
   }

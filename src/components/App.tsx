@@ -3,9 +3,10 @@ import { Fragment, useContext, useEffect } from 'react'
 import Header from './Header'
 import Pets from '../pages/Pets'
 import FindPets from '../pages/FindPets'
-import { AtomiContext, gql } from 'atomiql'
+import { AtomiContext } from 'atomiql'
 import Auth from '../pages/Auth'
 import FindPetByName from '../pages/FindPetByName'
+import { gql } from 'graphql-request'
 
 export const AUTH_CHECK = gql`
 query AuthCheck {

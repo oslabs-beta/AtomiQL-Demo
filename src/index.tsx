@@ -12,7 +12,7 @@ const url = 'http://localhost:4000';
 
 const client = {
   url,
-  resolvers,
+  // resolvers,
   typeDefs
 }
 

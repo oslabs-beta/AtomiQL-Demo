@@ -1,7 +1,9 @@
 import React from 'react'
-import { useQuery, gql } from 'atomiql'
+import { useQuery } from 'atomiql'
 import PetsList from '../components/PetsList'
 import Loader from '../components/Loader'
+import { gql } from 'graphql-request'
+
 
 export const GET_PET = gql`
 query GetPetQuery ($input: PetsInput) {
