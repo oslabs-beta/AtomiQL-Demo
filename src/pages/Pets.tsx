@@ -30,6 +30,7 @@ export const GET_PETS = gql`
       createdAt
       owner {
         id
+        age @client
       }
     }
   }

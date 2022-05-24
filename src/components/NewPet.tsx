@@ -13,6 +13,7 @@ export interface Pet {
   name: string
   type: string
   createdAt?: number
+  owner?: any
 }
 
 export interface NewPetProps {
